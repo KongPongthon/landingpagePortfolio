@@ -41,7 +41,10 @@ export default function TextHeader({
   return (
     <span
       ref={el}
-      className={cn('text-2xl font-bold text-blue-600', className)}
+      className={cn(
+        'text-2xl font-bold bg-gradient-to-r from-[#6758c5] via-[#ae67fa] to-[#f49867] bg-clip-text text-transparent',
+        className
+      )}
     ></span>
   );
 }

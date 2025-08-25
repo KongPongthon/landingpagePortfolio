@@ -1,183 +1,204 @@
 'use client';
-import TextHeader from '@/components/TextHeader';
-import { nanoid } from 'nanoid';
-import React from 'react';
+
+import { useEffect, useRef } from 'react';
 import Tilt from 'react-parallax-tilt';
-import { styled } from 'styled-components';
-const SkillsSection = () => {
+import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { nanoid } from 'nanoid';
+import { useLangStore } from '@/store/useLangStore';
+
+function SkillsSection() {
+  const lang = useLangStore((s) => s.lang);
+  const sectionRef = useRef<HTMLLIElement>(null);
+  const skillsRef = useRef<HTMLLIElement[]>([]);
+  const learningRef = useRef<HTMLHeadingElement>(null);
+
+  const addToSkills = (el: HTMLLIElement | null) => {
+    if (el && !skillsRef.current.includes(el)) {
+      skillsRef.current.push(el);
+    }
+  };
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // เคลียร์ state เริ่มต้นของทุกไอเท็ม
+    gsap.set(skillsRef.current, { y: 50, opacity: 0 });
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.batch(skillsRef.current, {
+        start: 'top 85%',
+        // เข้า viewport จากด้านล่าง
+        onEnter: (els) => {
+          gsap.to(els, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power2.out',
+            stagger: 0.06, //
+            overwrite: 'auto',
+          });
+        },
+        // กลับเข้า viewport จากด้านบน (เวลาเลื่อนย้อนขึ้น)
+        onEnterBack: (els) => {
+          gsap.to(els, {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power2.out',
+            stagger: 0.05,
+            overwrite: 'auto',
+          });
+        },
+        // เลื่อนไปด้านบนจนพ้น viewport (ย้อนกลับ) → รีเซ็ตให้พร้อมเล่นใหม่
+        onLeaveBack: (els) => {
+          gsap.to(els, {
+            y: 50,
+            opacity: 0,
+            duration: 0.3,
+            overwrite: 'auto',
+          });
+        },
+        // ถ้าอยากให้เลื่อนลงจนพ้นจอแล้วรีเซ็ตด้วย ก็เพิ่ม onLeave ตรงนี้ได้
+        onLeave: (els) => gsap.set(els, { y: 50, opacity: 0 }),
+      });
+
+      if (learningRef.current) {
+        gsap.fromTo(
+          learningRef.current,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: learningRef.current,
+              start: 'top 80%',
+              // ถ้าอยากให้เล่นครั้งเดียวใช้: 'play none none none'
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [sectionRef]);
+
   return (
-    <div className=''>
-      <div>
-        <TextHeader firsttext='SKILLS' secondtext='Skills' />
+    <section
+      id='skills'
+      ref={sectionRef}
+      className='relative overflow-hidden pt-14 pb-36 '
+    >
+      <h2 ref={learningRef} className='text-center text-4xl tracking-wider'>
+        {lang === 'en' ? 'Skill' : 'กำลังเรียนรู้'}
+      </h2>
+      <div className='container mx-auto mt-16'>
+        <ul className='grid grid-cols-3 lg:grid-cols-4 place-items-center gap-2'>
+          {skills.map((skill) => {
+            const { skillIcon, id, skillName } = skill;
+            return (
+              <li
+                key={id}
+                ref={addToSkills}
+                className='mt-10 p-4 transition-all duration-300 hover:scale-[1.2] text-center'
+              >
+                <Tilt>
+                  {/* <a
+                    href={skill.link}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='flex flex-col items-center gap-4'
+                  > */}
+                  <div className='relative w-[60px] h-[60px]'>
+                    <Image
+                      src={skillIcon}
+                      alt={skillName}
+                      fill
+                      className='object-contain'
+                    />
+                  </div>
+                  <p className='text-lg tracking-wider'>{skillName}</p>
+                  {/* </a> */}
+                </Tilt>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-      <Section>
-        <div
-          // content
-          className='grid grid-cols-1 gap-12 max-w-[1600px] mx-[auto] my-[0]'
-        >
-          <div
-            // skill
-            className='mb-4'
-          >
-            <div>
-              <h4 className='text-[1.2rem] mb-16 uppercase tracking-[5px]'>
-                using now:
-              </h4>
-              <ul
-                // skill-list
-                className='grid grid-cols-4 gap-3 items-center-safe'
-                data-aos='fade-left'
-                data-aos-delay='500'
-              >
-                {skills.map((skill) => {
-                  const { skillIcon, id, skillName } = skill;
-                  return (
-                    <Tilt key={id}>
-                      <li className='flex flex-col items-center gap-4 p-4 transition:var(--transition) hover:scale-[1.2] hover:box-shadow:0px_20px_30px_rgba(0,_0,_0,_0.2)'>
-                        <img src={skillIcon} alt='code skill icon' />
-                        <p>{skillName}</p>
-                      </li>
-                    </Tilt>
-                  );
-                })}
-              </ul>
-            </div>
-            <div>
-              <h4>learning:</h4>
-              <ul
-                className='skill-list'
-                data-aos='fade-left'
-                data-aos-delay='500'
-              >
-                {/* {learningSkills.map((skill) => {
-                  const { skillIcon, id, skillName } = skill;
-                  return (
-                    <Tilt key={id}>
-                      <li>
-                        <img src={skillIcon} alt='code skill icon' />
-                        <p>{skillName}</p>
-                      </li>
-                    </Tilt>
-                  );
-                })} */}
-              </ul>
-            </div>
-          </div>
+
+      <div className=' mt-36'>
+        <h2 ref={learningRef} className='text-center text-4xl tracking-wider'>
+          {lang === 'en' ? 'Learning' : 'กำลังเรียนรู้'}
+        </h2>
+
+        <div className='container mx-auto mt-16'>
+          <ul className='grid grid-cols-3 lg:grid-cols-4 place-items-center gap-2'>
+            {learning.map((skill) => {
+              const { skillIcon, id, skillName } = skill;
+              return (
+                <li
+                  key={id}
+                  ref={addToSkills}
+                  className='mt-10 p-4 transition-all duration-300 hover:scale-[1.2]'
+                >
+                  <Tilt>
+                    {/* <a
+                      href={skill.link}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='flex flex-col items-center gap-4'
+                    > */}
+                    <div className='relative w-[60px] h-[60px]'>
+                      <Image
+                        src={skillIcon}
+                        alt={skillName}
+                        fill
+                        className='object-contain'
+                      />
+                    </div>
+                    <p className='text-lg tracking-wider'>{skillName}</p>
+                    {/* </a> */}
+                  </Tilt>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-      </Section>
-    </div>
+      </div>
+    </section>
   );
-};
+}
 
 export default SkillsSection;
 
-const Section = styled.section`
-  background: var(--color-blog);
-  padding: var(--section-padding);
-  min-height: 100vh;
-
-  .content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    max-width: 1600px;
-    margin: 0 auto;
-
-    h4 {
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      margin-bottom: 4rem;
-      color: var(--title-color);
-      letter-spacing: 5px;
-    }
-
-    .skill div {
-      margin-bottom: 4rem;
-    }
-
-    .skill-list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr) !important;
-      gap: 3rem;
-      place-items: center;
-
-      li {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem;
-        transition: var(--transition);
-      }
-
-      p {
-        display: inline-block;
-        color: var(--title-color);
-        font-family: Paprika;
-        font-size: 0.8rem;
-        text-align: center;
-        letter-spacing: var(--letter-spacing);
-        position: relative;
-      }
-
-      p::after {
-        position: absolute;
-        content: '';
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 1px;
-        background: var(--gradient-text);
-        transition: var(--transition);
-      }
-
-      img {
-        width: 5.5rem;
-        height: 5.5rem;
-      }
-
-      li:hover {
-        transform: scale(1.2);
-        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
-
-        & p::after {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 1440px) {
-    .skill-list {
-      grid-template-columns: repeat(3, 1fr) !important;
-    }
-  }
-  @media (max-width: 1025px) {
-    .content {
-      grid-template-columns: 1fr;
-      justify-items: center;
-    }
-
-    .img-container {
-      display: none;
-    }
-  }
-
-  @media (max-width: 637px) {
-    .skill-list {
-      grid-template-columns: repeat(3, 1fr) !important;
-    }
-  }
-
-  @media (max-width: 484px) {
-    .skill-list {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-  }
-`;
-
 const skills = [
+  {
+    skillName: 'HTML',
+    skillIcon: '/assets/img/html.svg',
+    id: nanoid(),
+  },
+  {
+    skillName: 'CSS',
+    skillIcon: '/assets/img/css.svg',
+    id: nanoid(),
+  },
+  {
+    skillName: 'JavaScript',
+    skillIcon: '/assets/img/javascript.svg',
+    id: nanoid(),
+  },
+  {
+    skillName: 'React',
+    skillIcon: '/assets/img/react.svg',
+    id: nanoid(),
+  },
+];
+
+const learning = [
   {
     skillName: 'HTML',
     skillIcon: '/assets/img/html.svg',

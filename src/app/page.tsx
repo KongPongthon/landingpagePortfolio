@@ -1,23 +1,27 @@
-import ProjectsSection from '@/app/ProjectsSection';
-import ContactSection from './ContactSection';
-import SkillsSection from './SkillsSection';
+import Footer from '@/components/Footer';
 import AboutSection from './AboutSection';
+import Homepage from './Homepage';
+import ProjectSection from './ProjectSection';
+import ServicesSection from './Services';
 export default function Home() {
   return (
-    <div className='bg-gradient-to-br to-50% from-purple-900 min-h-screen'>
+    <div>
       <div className=' relative flex flex-col gap-8 mx-auto p-4 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-6xl overflow-hidden'>
+        <div>
+          <Homepage />
+        </div>
         <div>
           <AboutSection />
         </div>
         <div>
-          <SkillsSection />
+          <ServicesSection />
         </div>
         <div>
-          <ProjectsSection />
+          <ProjectSection />
         </div>
-        <div>
-          <ContactSection />
-        </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

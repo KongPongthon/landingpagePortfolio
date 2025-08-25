@@ -1,6 +1,7 @@
 'use client';
 
 import TextHeader from '@/components/TextHeader';
+import { Button } from '@/components/ui/button';
 
 const ContactSection = () => {
   return (
@@ -11,10 +12,6 @@ const ContactSection = () => {
           secondtext='Contact Me'
           // className='text-black'
         />
-      </div>
-      <div>
-        <div>Email : 3oB1H@example.com</div>
-        <div>GitHub: github.com/yourusername</div>
       </div>
     </div>
   );
