@@ -191,7 +191,7 @@ const ProjectsSection = () => {
           ref={titleRef}
           className='text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-4'
         >
-          Project
+          My Project
         </h2>
         <div
           ref={titleLineRef}

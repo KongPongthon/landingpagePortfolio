@@ -7,6 +7,29 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { nanoid } from 'nanoid';
 import { useLangStore } from '@/store/useLangStore';
+import {
+  css,
+  docker,
+  express,
+  gin,
+  go,
+  html,
+  js,
+  mongodb,
+  mui,
+  nextjs,
+  nginx,
+  nodejs,
+  posgresql,
+  prisma,
+  react,
+  shadcn,
+  tailwind,
+  types,
+  vue,
+  zod,
+  zustand,
+} from '@/assets/img';
 
 function SkillsSection() {
   const lang = useLangStore((s) => s.lang);
@@ -88,15 +111,14 @@ function SkillsSection() {
   }, [sectionRef]);
 
   return (
-    <section
-      id='skills'
-      ref={sectionRef}
-      className='relative overflow-hidden pt-14 pb-36 '
-    >
-      <h2 ref={learningRef} className='text-center text-4xl tracking-wider'>
-        {lang === 'en' ? 'Skill' : 'กำลังเรียนรู้'}
+    <section id='skills' ref={sectionRef} className=' '>
+      <h2
+        ref={learningRef}
+        className='text-center text-4xl tracking-wider mt-10'
+      >
+        {lang === 'en' ? 'My Skills' : 'ทักษะของฉัน'}
       </h2>
-      <div className='container mx-auto mt-16'>
+      <div className='container mx-auto'>
         <ul className='grid grid-cols-3 lg:grid-cols-4 place-items-center gap-2'>
           {skills.map((skill) => {
             const { skillIcon, id, skillName } = skill;
@@ -104,25 +126,25 @@ function SkillsSection() {
               <li
                 key={id}
                 ref={addToSkills}
-                className='mt-10 p-4 transition-all duration-300 hover:scale-[1.2] text-center'
+                className='mt-10 p-4 transition-all duration-300 hover:scale-[1.2]'
               >
                 <Tilt>
-                  {/* <a
-                    href={skill.link}
+                  <a
+                    // href={skill.link}
                     target='_blank'
                     rel='noreferrer'
                     className='flex flex-col items-center gap-4'
-                  > */}
-                  <div className='relative w-[60px] h-[60px]'>
-                    <Image
-                      src={skillIcon}
-                      alt={skillName}
-                      fill
-                      className='object-contain'
-                    />
-                  </div>
-                  <p className='text-lg tracking-wider'>{skillName}</p>
-                  {/* </a> */}
+                  >
+                    <div className='relative w-20 h-20'>
+                      <Image
+                        src={skillIcon}
+                        alt={skillName}
+                        fill
+                        className='object-contain'
+                      />
+                    </div>
+                    <p className='text-lg tracking-wider'>{skillName}</p>
+                  </a>
                 </Tilt>
               </li>
             );
@@ -146,22 +168,22 @@ function SkillsSection() {
                   className='mt-10 p-4 transition-all duration-300 hover:scale-[1.2]'
                 >
                   <Tilt>
-                    {/* <a
-                      href={skill.link}
+                    <a
+                      // href={skill.link}
                       target='_blank'
                       rel='noreferrer'
                       className='flex flex-col items-center gap-4'
-                    > */}
-                    <div className='relative w-[60px] h-[60px]'>
-                      <Image
-                        src={skillIcon}
-                        alt={skillName}
-                        fill
-                        className='object-contain'
-                      />
-                    </div>
-                    <p className='text-lg tracking-wider'>{skillName}</p>
-                    {/* </a> */}
+                    >
+                      <div className='relative w-20 h-20'>
+                        <Image
+                          src={skillIcon}
+                          alt={skillName}
+                          fill
+                          className='object-contain'
+                        />
+                      </div>
+                      <p className='text-lg tracking-wider'>{skillName}</p>
+                    </a>
                   </Tilt>
                 </li>
               );
@@ -178,45 +200,110 @@ export default SkillsSection;
 const skills = [
   {
     skillName: 'HTML',
-    skillIcon: '/assets/img/html.svg',
+    skillIcon: html,
     id: nanoid(),
   },
   {
     skillName: 'CSS',
-    skillIcon: '/assets/img/css.svg',
+    skillIcon: css,
     id: nanoid(),
   },
   {
     skillName: 'JavaScript',
-    skillIcon: '/assets/img/javascript.svg',
+    skillIcon: js,
     id: nanoid(),
   },
   {
     skillName: 'React',
-    skillIcon: '/assets/img/react.svg',
+    skillIcon: react,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Tailwind',
+    skillIcon: tailwind,
+    id: nanoid(),
+  },
+  {
+    skillName: 'next.js',
+    skillIcon: nextjs,
+    id: nanoid(),
+  },
+  {
+    skillName: 'docker',
+    skillIcon: docker,
+    id: nanoid(),
+  },
+  {
+    skillName: 'MUI',
+    skillIcon: mui,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Prisma',
+    skillIcon: prisma,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Shadcn UI',
+    skillIcon: shadcn,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Nodejs',
+    skillIcon: nodejs,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Typescript',
+    skillIcon: types,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Express',
+    skillIcon: express,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Zod',
+    skillIcon: zod,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Zustand',
+    skillIcon: zustand,
+    id: nanoid(),
+  },
+  {
+    skillName: 'MongoDB',
+    skillIcon: mongodb,
+    id: nanoid(),
+  },
+  {
+    skillName: 'Nginx',
+    skillIcon: nginx,
     id: nanoid(),
   },
 ];
 
 const learning = [
   {
-    skillName: 'HTML',
-    skillIcon: '/assets/img/html.svg',
+    skillName: 'posgresql',
+    skillIcon: posgresql,
     id: nanoid(),
   },
   {
-    skillName: 'CSS',
-    skillIcon: '/assets/img/css.svg',
+    skillName: 'go',
+    skillIcon: go,
     id: nanoid(),
   },
   {
-    skillName: 'JavaScript',
-    skillIcon: '/assets/img/javascript.svg',
+    skillName: 'gin',
+    skillIcon: gin,
     id: nanoid(),
   },
   {
-    skillName: 'React',
-    skillIcon: '/assets/img/react.svg',
+    skillName: 'vue',
+    skillIcon: vue,
     id: nanoid(),
   },
 ];

@@ -3,6 +3,8 @@ import AboutSection from './AboutSection';
 import Homepage from './Homepage';
 import ProjectSection from './ProjectSection';
 import ServicesSection from './Services';
+import SkillsSection from './SkillsSection';
+import ContactSection from './ContactSection';
 export default function Home() {
   return (
     <div>
@@ -14,10 +16,13 @@ export default function Home() {
           <AboutSection />
         </div>
         <div>
-          <ServicesSection />
+          <SkillsSection />
         </div>
         <div>
           <ProjectSection />
+        </div>
+        <div>
+          <ContactSection />
         </div>
       </div>
       <div>

@@ -1,3 +1,4 @@
+'use client';
 import { footers } from '@/dataAndTypes/footer';
 
 const colorClasses: Record<string, string> = {
@@ -22,10 +23,50 @@ const colorClasses: Record<string, string> = {
     <footer className='bg-[#F8F8F8] pt-12'>
       <p className='text-center'>Pongsathon</p>
       <div className='flex justify-center gap-12 py-5'>
-        <div>Home</div>
-        <div>About</div>
-        <div>Projects</div>
-        <div>Contact Me</div>
+        <div
+          onClick={() =>
+            window.scrollTo({
+              top: document.getElementById('home')?.offsetTop || 0,
+              behavior: 'smooth',
+            })
+          }
+          className='hover:cursor-pointer'
+        >
+          Home
+        </div>
+        <div
+          onClick={() =>
+            window.scrollTo({
+              top: document.getElementById('about')?.offsetTop || 0,
+              behavior: 'smooth',
+            })
+          }
+          className='hover:cursor-pointer'
+        >
+          About
+        </div>
+        <div
+          onClick={() =>
+            window.scrollTo({
+              top: document.getElementById('projects')?.offsetTop || 0,
+              behavior: 'smooth',
+            })
+          }
+          className='hover:cursor-pointer'
+        >
+          Projects
+        </div>
+        <div
+          onClick={() =>
+            window.scrollTo({
+              top: document.getElementById('contact')?.offsetTop || 0,
+              behavior: 'smooth',
+            })
+          }
+          className='hover:cursor-pointer'
+        >
+          Contact Me
+        </div>
       </div>
       <ul className='flex justify-center gap-12 p-[1.5rem]'>
         {footers.map((footer) => {
