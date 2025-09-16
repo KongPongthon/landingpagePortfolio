@@ -2,15 +2,16 @@
 import TextHeader from '@/components/TextHeader';
 import { Button } from '@/components/ui/button';
 import { useLangStore } from '@/store/useLangStore';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { Icon } from '@/assets/image';
-
+import { CV, Icon } from '@/assets/image';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { CustomDialog } from '@/components/CustomDialog';
 const Homepage = () => {
   const lang = useLangStore((s) => s.lang);
   const imageRef = useRef<HTMLDivElement>(null);
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     if (imageRef.current) {
       // Floating animation
@@ -65,7 +66,7 @@ const Homepage = () => {
 มีประสบการณ์ในการพัฒนาเว็บแอปพลิเคชันที่ทันสมัยและขยายระบบได้ พร้อมทั้งออกแบบ UI ที่สะอาดและตอบสนองได้ดี ควบคู่กับการพัฒนา Backend ที่มีประสิทธิภาพและดูแลรักษาง่าย`}
         </p>
         <div className='flex gap-4'>
-          <Button>Download CV</Button>
+          <Button onClick={() => setOpen(true)}>Open CV</Button>
           {/* <Button variant='outline'>View Projects</Button> */}
         </div>
       </section>
@@ -86,6 +87,11 @@ const Homepage = () => {
           />
         </div>
       </section>
+      <CustomDialog open={open} onOpenChange={setOpen} title='My CV'>
+        <div className='flex justify-center items-center h-full relative'>
+          <Image src={CV} alt='CV' fill className='object-contain border' />
+        </div>
+      </CustomDialog>
     </div>
   );
 };
