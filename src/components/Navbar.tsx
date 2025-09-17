@@ -154,6 +154,7 @@ function Navbar() {
             );
           })}
         </nav>
+        <SwitchLanguage />
       </motion.div>
     </header>
   );

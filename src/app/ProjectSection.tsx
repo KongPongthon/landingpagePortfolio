@@ -14,7 +14,7 @@ const MyProjects = () => {
     <section id='projects' className='py-20 bg-white'>
       <div className='container mx-auto px-6'>
         {/* Section Title */}
-        <h2 className='text-4xl font-bold text-center mb-12'>
+        <h2 className='text-center text-4xl tracking-wider mt-10 mb-5'>
           {lang === 'en' ? 'My Projects' : 'โปรเจกต์ของฉัน'}
         </h2>
 

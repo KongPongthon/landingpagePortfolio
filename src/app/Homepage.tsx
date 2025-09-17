@@ -66,7 +66,12 @@ const Homepage = () => {
 มีประสบการณ์ในการพัฒนาเว็บแอปพลิเคชันที่ทันสมัยและขยายระบบได้ พร้อมทั้งออกแบบ UI ที่สะอาดและตอบสนองได้ดี ควบคู่กับการพัฒนา Backend ที่มีประสิทธิภาพและดูแลรักษาง่าย`}
         </p>
         <div className='flex gap-4'>
-          <Button onClick={() => setOpen(true)}>Open CV</Button>
+          <Button
+            onClick={() => setOpen(true)}
+            className='bg-gradient-to-r from-[#ff6f00] via-[#ff8f00] to-[#ffa000]'
+          >
+            Open CV
+          </Button>
           {/* <Button variant='outline'>View Projects</Button> */}
         </div>
       </section>
