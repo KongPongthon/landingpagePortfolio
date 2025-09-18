@@ -57,7 +57,7 @@ function Navbar() {
                 damping: 20,
                 delay: 0.7 + index * 0.2,
               }}
-              className='relative text-gray-200
+              className='relative text-black
     hover:bg-gradient-to-r hover:from-[#5f3dc4] hover:via-[#ae67fa] hover:to-[#f49867]
     hover:bg-clip-text hover:text-transparent
     font-medium transition-colors duration-300 group'
@@ -119,7 +119,7 @@ function Navbar() {
           <motion.button
             whileTap={{ scale: 0.7 }}
             onClick={toggleMenu}
-            className='text-gray-300'
+            className='text-black'
           >
             {isOpen ? (
               <FiX className='h-6 w-6' />
@@ -146,7 +146,7 @@ function Navbar() {
               <a
                 key={item.id}
                 onClick={toggleMenu}
-                className='text-gray-300 font-medium py-2'
+                className='text-black font-medium py-2'
                 href={`#${item.toId}`}
               >
                 {item.name}
