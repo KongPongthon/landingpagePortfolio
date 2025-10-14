@@ -70,7 +70,7 @@ const Homepage = () => {
             onClick={() => setOpen(true)}
             className='bg-gradient-to-r from-[#ff6f00] via-[#ff8f00] to-[#ffa000]'
           >
-            Open CV
+            Open Resume
           </Button>
           {/* <Button variant='outline'>View Projects</Button> */}
         </div>
@@ -92,7 +92,7 @@ const Homepage = () => {
           />
         </div>
       </section>
-      <CustomDialog open={open} onOpenChange={setOpen} title='My CV'>
+      <CustomDialog open={open} onOpenChange={setOpen} title='Resume'>
         <div className='flex justify-center items-center h-full relative'>
           <Image src={CV} alt='CV' fill className='object-contain border' />
         </div>

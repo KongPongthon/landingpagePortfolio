@@ -1,5 +1,6 @@
 import {
   Captures,
+  Captures2,
   projectImage,
   projectImage2,
   projectImage3,
@@ -29,6 +30,25 @@ export const projects: Project[] = [
     infoTh: 'Cafe And Dessert แบรนด์บล็อกออนไลน์',
     img: Captures,
     technology: ['JavaScript', 'React.js', 'Node.js', 'Tailwind CSS'],
+  },
+  {
+    id: nanoid(),
+    title: 'ShopMini',
+    // url: 'https://tecth-hub.netlify.app/',
+    sourceCode: 'https://github.com/KongPongthon/e-commerce',
+    infoEng: 'ShopMini Online Store',
+    infoTh: 'ShopMini ร้านค้าออนไลน์',
+    img: Captures2,
+    technology: [
+      'JavaScript',
+      'Next.js',
+      'Tailwind CSS',
+      'Prisma',
+      'SQLite',
+      'Zustand',
+      'Zod',
+      'react-hook-form',
+    ],
   },
   // {
   //   id: nanoid(),
