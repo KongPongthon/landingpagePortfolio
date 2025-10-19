@@ -114,7 +114,7 @@ function SkillsSection() {
     <section id='skills' ref={sectionRef} className=' '>
       <h2
         ref={learningRef}
-        className='text-center text-4xl tracking-wider mt-10'
+        className='text-center text-4xl tracking-wider mt-10 font-noto'
       >
         {lang === 'en' ? 'My Skills' : 'ทักษะของฉัน'}
       </h2>
@@ -153,7 +153,10 @@ function SkillsSection() {
       </div>
 
       <div className=' mt-36'>
-        <h2 ref={learningRef} className='text-center text-4xl tracking-wider'>
+        <h2
+          ref={learningRef}
+          className='text-center text-4xl tracking-wider font-noto'
+        >
           {lang === 'en' ? 'Learning' : 'กำลังเรียนรู้'}
         </h2>
 

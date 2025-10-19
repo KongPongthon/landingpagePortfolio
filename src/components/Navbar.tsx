@@ -3,13 +3,14 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { menuData, socialLinks } from '@/dataAndTypes/navbar';
+import { menuData } from '@/dataAndTypes/navbar';
 import SwitchLanguage from './SwitchLanguage';
+import { useLangStore } from '@/store/useLangStore';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
-
+  const lang = useLangStore((s) => s.lang);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -63,7 +64,7 @@ function Navbar() {
     font-medium transition-colors duration-300 group'
               href={`#${item.toId}`}
             >
-              {item.name}
+              {lang === 'en' ? item.name_en : item.name_th}
               <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300' />
             </motion.a>
           ))}
@@ -149,7 +150,7 @@ function Navbar() {
                 className='text-black font-medium py-2'
                 href={`#${item.toId}`}
               >
-                {item.name}
+                {lang === 'en' ? item.name_en : item.name_th}
               </a>
             );
           })}

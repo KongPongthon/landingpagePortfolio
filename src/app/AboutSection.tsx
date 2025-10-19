@@ -25,7 +25,7 @@ const AboutSection = () => {
 
       {/* Right side: About text */}
       <section className='max-w-4xl mx-auto py-20 text-center md:text-left'>
-        <h2 className='text-center text-4xl tracking-wider mt-10 mb-10 md:mb-5'>
+        <h2 className='text-center text-4xl tracking-wider mt-10 mb-10 md:mb-5 font-noto'>
           {lang === 'en' ? 'About Me' : 'เกี่ยวกับฉัน'}
         </h2>
 
